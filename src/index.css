@@ -1,0 +1,11 @@
+:root {
+  --primary: rgb(0, 132, 255);
+}
+
+body {
+  font-family: Arial;
+  background-color: var(--primary);
+  color: white;
+  margin: 0;
+  padding: 0;
+}
