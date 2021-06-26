@@ -30,19 +30,21 @@ function App() {
       }
   }
 
-  async function update() {
-    const result = await cooler!.getData();
-    setData(result);
-  }
+  
 
   React.useEffect(() => {
     if(!cooler) return;
+
+    async function update() {
+      const result = await cooler!.getData();
+      setData(result);
+    }
     
     update();
 
     const updateTimer = setInterval(update, 10_000);
     return () => clearInterval(updateTimer);
-  }, [cooler, update]);
+  }, [cooler]);
 
   return (
     <div className="App">

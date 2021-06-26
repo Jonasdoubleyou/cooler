@@ -8,7 +8,7 @@ const TEMP_OUT2         = "ac255d90-c971-4d69-baa5-be6e6916d255";
 const TEMP_TARGET       = "a630a2b6-398e-46ea-b4ce-d019b8afc2a5";
 const VOLTAGE           =  "71442048-a860-49aa-b1c5-a163a3496fdd";
 const BATTERY_STATUS    = "74ad860b-8e24-4e50-a352-116bb46fd172";
-const COOLING_MODE      = "65ee7354-0f62-4c98-8673-18a3e932a886";
+const COOLING_MODE      = "df54b382-ea92-474a-a5ea-a8a2f4f73878";
 
 function toString(dataView: DataView) {
     const decoder = new TextDecoder("utf-8");
@@ -53,12 +53,12 @@ export async function getCooler(): Promise<Cooler> {
         tempTarget    : await service.getCharacteristic(TEMP_TARGET),
         voltage       : await service.getCharacteristic(VOLTAGE),
         batteryStatus : await service.getCharacteristic(BATTERY_STATUS),
-        /* coolingMode   : await service.getCharacteristic(COOLING_MODE), */
+        coolingMode   : await service.getCharacteristic(COOLING_MODE),
     };
 
     return {
         async getData(): Promise<CoolerData> {
-            const [tempIn1, tempIn2, tempOut1, tempOut2, tempTarget, voltage, batteryStatus /*, coolingMode */] = await Promise.all([
+            const [tempIn1, tempIn2, tempOut1, tempOut2, tempTarget, voltage, batteryStatus, coolingMode] = await Promise.all([
                 characteristics.tempIn1.readValue(),
                 characteristics.tempIn2.readValue(),
                 characteristics.tempOut1.readValue(),
@@ -66,7 +66,7 @@ export async function getCooler(): Promise<Cooler> {
                 characteristics.tempTarget.readValue(),
                 characteristics.voltage.readValue(),
                 characteristics.batteryStatus.readValue(),
-                /* characteristics.coolingMode.readValue(), */
+                characteristics.coolingMode.readValue()
             ]);
 
             console.log("getData - tempIn1", tempIn1);
@@ -79,7 +79,7 @@ export async function getCooler(): Promise<Cooler> {
                 tempTarget: toFloat(tempTarget),
                 voltage: toFloat(voltage),
                 batteryStatus: toString(batteryStatus) as any,
-                coolingMode: "test" /* toString(coolingMode) as any */
+                coolingMode: toString(coolingMode) as any
             };
         }
     };
