@@ -36,7 +36,7 @@ export interface Cooler {
 
 export async function getCooler(): Promise<Cooler> {
     if(!navigator.bluetooth)
-        throw new Error("Bluetooth is not supported by this browser");
+        throw new Error("Bluetooth wird vom Browser nicht unterstützt");
 
     const device = await navigator.bluetooth.requestDevice({ filters: [
         { services: [SERVICE_UID] }
@@ -53,12 +53,12 @@ export async function getCooler(): Promise<Cooler> {
         tempTarget    : await service.getCharacteristic(TEMP_TARGET),
         voltage       : await service.getCharacteristic(VOLTAGE),
         batteryStatus : await service.getCharacteristic(BATTERY_STATUS),
-        coolingMode   : await service.getCharacteristic(COOLING_MODE),
+        /* coolingMode   : await service.getCharacteristic(COOLING_MODE), */
     };
 
     return {
         async getData(): Promise<CoolerData> {
-            const [tempIn1, tempIn2, tempOut1, tempOut2, tempTarget, voltage, batteryStatus, coolingMode] = await Promise.all([
+            const [tempIn1, tempIn2, tempOut1, tempOut2, tempTarget, voltage, batteryStatus /*, coolingMode */] = await Promise.all([
                 characteristics.tempIn1.readValue(),
                 characteristics.tempIn2.readValue(),
                 characteristics.tempOut1.readValue(),
@@ -66,7 +66,7 @@ export async function getCooler(): Promise<Cooler> {
                 characteristics.tempTarget.readValue(),
                 characteristics.voltage.readValue(),
                 characteristics.batteryStatus.readValue(),
-                characteristics.coolingMode.readValue(),
+                /* characteristics.coolingMode.readValue(), */
             ]);
 
             return {
@@ -77,7 +77,7 @@ export async function getCooler(): Promise<Cooler> {
                 tempTarget: toFloat(tempTarget),
                 voltage: toFloat(voltage),
                 batteryStatus: toString(batteryStatus) as any,
-                coolingMode: toString(batteryStatus) as any
+                coolingMode: "test" /* toString(coolingMode) as any */
             };
         }
     };

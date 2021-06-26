@@ -46,20 +46,38 @@ function App() {
     <div className="App">
       <h1>Kühlschrank</h1>
 
-      {error !== null && <p>Fehler: {error}</p>}
+      {error !== null && <p className="error">Fehler: {error}</p>}
       {state === "connecting" && <>verbinde...</>}
       {state === "user-click" && <>
         <button onClick={start}>
-          Start
+          Gerät koppeln
         </button>
       </>}
       {/* state === "connected" && */ <>
-        <p>Zieltemparatur: {data.tempTarget}°C</p>
-        <p>Innentemparatur: {data.tempIn1}°C / {data.tempIn2}°C</p>
-        <p>Außentemparatur: {data.tempOut1}°C / {data.tempOut2}°C</p>
-        <p>Spannung: {data.voltage}V</p>
-        <p>Batteriezustand: {data.batteryStatus}</p>
-        <p>Modus: {data.coolingMode}</p>
+      <div className="value">
+        <div className="value__key">Zieltemparatur</div>
+        <div className="value__value">{data.tempTarget}°</div>
+      </div>
+      <div className="value value__invert">
+        <div className="value__key">Innentemparatur</div>
+        <div className="value__value">{data.tempIn1}° / {data.tempIn2}°</div>
+      </div>
+      <div className="value">
+          <div className="value__key">Außentemparatur</div>
+          <div className="value__value">{data.tempOut1}° / {data.tempOut2}°</div>
+        </div>
+        <div className="value value__invert">
+          <div className="value__key">Spannung</div>
+          <div className="value__value">{data.voltage}V</div>
+        </div>
+        <div className="value">
+          <div className="value__key">Batteriezustand</div>
+          <div className="value__value">{data.batteryStatus}</div>
+        </div>
+        <div className="value value__invert">
+          <div className="value__key">Modus</div>
+          <div className="value__value">{data.coolingMode}</div>
+        </div>
       </>}
     </div>
   );

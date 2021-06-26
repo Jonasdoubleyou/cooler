@@ -9,3 +9,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+button {
+  all: unset;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: white;
+  font-weight: bold;
+  padding: 20px 10%;
+  width: 80%;
+}

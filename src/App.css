@@ -3,6 +3,32 @@
   margin: 0 auto;
   background-color: white;
   color: var(--primary);
-  padding: 20px;
+  padding: 20px 0px;
   text-align: center;
+}
+
+.error {
+  color: white;
+  background-color: red;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.value {
+  padding: 15px; 
+}
+
+.value__invert {
+  background-color: var(--primary);
+  color: white;
+}
+
+.value__key {
+  font-size: 20px;
+}
+
+.value__value {
+  font-size: 40px;
+  font-weight: bold;
+  padding: 5px;
 }
