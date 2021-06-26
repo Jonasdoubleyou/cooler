@@ -45,6 +45,8 @@ export async function getCooler(): Promise<Cooler> {
     const server = await device.gatt!.connect();
     const service = await server.getPrimaryService(SERVICE_UID);
     
+    console.log("characteristics", await service.getCharacteristics());
+    
     const characteristics = {
         tempIn1       : await service.getCharacteristic(TEMP_IN1),
         tempIn2       : await service.getCharacteristic(TEMP_IN2),
