@@ -37,6 +37,8 @@ function App() {
 
   React.useEffect(() => {
     if(!cooler) return;
+    
+    update();
 
     const updateTimer = setInterval(update, 10_000);
     return () => clearInterval(updateTimer);
