@@ -1,14 +1,23 @@
 import React from 'react';
 import './App.css';
-import { getCooler } from './connection';
+import { Cooler, CoolerData, getCooler } from './connection';
 
 function App() {
   const [error, setError] = React.useState<string | null>(null);
   const [state, setState] = React.useState<"user-click" | "connecting" | "connected">("user-click");
 
-  const [cooler, setCooler] = React.useState<{ getCharacteristic: () => Promise<any>} | null>(null);
+  const [cooler, setCooler] = React.useState<Cooler | null>(null);
 
-  const [data, setData] = React.useState<{ value: string }>({ value: "" });
+  const [data, setData] = React.useState<CoolerData>({ 
+    batteryStatus: "test",
+    coolingMode: "test",
+    tempIn1: 0,
+    tempIn2: 0,
+    tempOut1: 0,
+    tempOut2: 0,
+    tempTarget: 0,
+    voltage: 0,
+   });
 
   async function start() {
       setState("connecting");
@@ -22,8 +31,8 @@ function App() {
   }
 
   async function update() {
-    const result = await cooler!.getCharacteristic();
-    setData({ value: result });
+    const result = await cooler!.getData();
+    setData(result);
   }
 
   React.useEffect(() => {
@@ -44,8 +53,13 @@ function App() {
           Start
         </button>
       </>}
-      {state === "connected" && <>
-        <p>Data: {data.value}</p>
+      {/* state === "connected" && */ <>
+        <p>Zieltemparatur: {data.tempTarget}°C</p>
+        <p>Innentemparatur: {data.tempIn1}°C / {data.tempIn2}°C</p>
+        <p>Außentemparatur: {data.tempOut1}°C / {data.tempOut2}°C</p>
+        <p>Spannung: {data.voltage}V</p>
+        <p>Batteriezustand: {data.batteryStatus}</p>
+        <p>Modus: {data.coolingMode}</p>
       </>}
     </div>
   );
