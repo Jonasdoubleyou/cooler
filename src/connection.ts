@@ -2,6 +2,10 @@
 const SERVICE_UID = "199ecfda-a1f8-463f-89bb-7a698b36b2a1";
 const CHARACTERISTIC_UID = "17ed73f7-f174-415f-89e2-154025a1b5da";
 
+function toString(dataView: DataView) {
+    const decoder = new TextDecoder("utf-8");
+    return decoder.decode(dataView.buffer);
+}
 export async function getCooler() {
     if(!navigator.bluetooth)
         throw new Error("Bluetooth is not supported by this browser");
@@ -15,8 +19,8 @@ export async function getCooler() {
     const characteristic = await service.getCharacteristic(CHARACTERISTIC_UID);
 
     return {
-        getCharacteristic() {
-            return characteristic.readValue();
+        async getCharacteristic() {
+            return toString(await characteristic.readValue());
         },
     };
 }
