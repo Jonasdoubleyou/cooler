@@ -16,7 +16,7 @@ function toString(dataView: DataView) {
 }
 
 function toFloat(dataView: DataView) {
-    return dataView.getFloat32(1);
+    return dataView.getFloat32(0);
 }
 
 export interface CoolerData {
