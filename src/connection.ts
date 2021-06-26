@@ -69,6 +69,8 @@ export async function getCooler(): Promise<Cooler> {
                 /* characteristics.coolingMode.readValue(), */
             ]);
 
+            console.log("getData - tempIn1", tempIn1);
+
             return {
                 tempIn1: toString(tempIn1) as any,
                 tempIn2: toString(tempIn2) as any,
