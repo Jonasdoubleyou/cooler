@@ -70,12 +70,12 @@ export async function getCooler(): Promise<Cooler> {
             ]);
 
             return {
-                tempIn1: toFloat(tempIn1),
-                tempIn2: toFloat(tempIn2),
-                tempOut1: toFloat(tempOut1),
-                tempOut2: toFloat(tempOut2),
-                tempTarget: toFloat(tempTarget),
-                voltage: toFloat(voltage),
+                tempIn1: toString(tempIn1) as any,
+                tempIn2: toString(tempIn2) as any,
+                tempOut1: toString(tempOut1) as any,
+                tempOut2: toString(tempOut2) as any,
+                tempTarget: toString(tempTarget) as any,
+                voltage: toString(voltage) as any,
                 batteryStatus: toString(batteryStatus) as any,
                 coolingMode: "test" /* toString(coolingMode) as any */
             };
