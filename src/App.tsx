@@ -135,7 +135,7 @@ function App() {
           </div>
 
           <LineChart data={history} width={900} height={250}>
-            <XAxis dataKey="time" tickFormatter={(time: Date) => time?.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) ?? "unbekannt"} />
+            <XAxis dataKey="time" tickFormatter={(time: Date) => time instanceof Date ? time.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "unbekannt"} />
             <YAxis />
             <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
 
