@@ -1,5 +1,8 @@
 :root {
   --primary: rgb(0, 132, 255);
+  --green: #00dd00;
+  --red: #dd0000;
+  --orange: #dd8500;
 }
 
 body {
@@ -18,4 +21,5 @@ button {
   font-weight: bold;
   padding: 20px 10%;
   width: 80%;
+  border-radius: 10px 10px 10px;
 }

@@ -1,7 +1,6 @@
 .App {
-  max-width: 400px;
+  max-width: 1000px;
   margin: 0 auto;
-  background-color: white;
   color: var(--primary);
   padding: 20px 0px;
   text-align: center;
@@ -12,15 +11,25 @@
   background-color: red;
   padding: 20px;
   font-weight: bold;
+  border-radius: 10px 10px 10px;
+}
+
+.container {
+  background-color: white;
+  color: var(--primary);
+  border-radius: 10px 10px 10px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.values {
+  display: flex;
+  flex-direction: row;
 }
 
 .value {
   padding: 15px; 
-}
-
-.value__invert {
-  background-color: var(--primary);
-  color: white;
+  flex-grow: 1;
 }
 
 .value__key {
